@@ -16,12 +16,10 @@ class Grid {
     }
 
     private void setTwoCellsWithAValue() {
-        int index1 = NumberGenerator.getRandomNumber( 0, 15 );
-        int index2 = NumberGenerator.getRandomNumber( 0, 15 );
-        int value1 = NumberGenerator.getRandomNumber( 1, 2 );
-        value1 *= 2;
-        int value2 = NumberGenerator.getRandomNumber( 1, 2 );
-        value2 *= 2;
+        int index1 = NumberGenerator.getRandomNumberWithinARange( 0, 15 );
+        int index2 = NumberGenerator.getRandomNumberWithinARange( 0, 15 );
+        int value1 = NumberGenerator.getRandomNumberWithinARangeAndPowerOf2( 3, 1 );
+        int value2 = NumberGenerator.getRandomNumberWithinARangeAndPowerOf2( 3, 1 );
         updateCellValue( value1, index1 );
         updateCellValue( value2, index2 );
     }

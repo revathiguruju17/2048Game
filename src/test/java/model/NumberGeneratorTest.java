@@ -7,13 +7,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class NumberGeneratorTest {
     @Test
     void shouldGenerateNumberWhichIsGreaterThanOrEqualToTheMinimumRange() {
-        int number = NumberGenerator.getRandomNumber( 16, 0 );
+        int number = NumberGenerator.getRandomNumberWithinARange(16,0 );
         assertTrue( number >= 0 );
     }
 
     @Test
     void shouldGenerateNumberWhichIsLesserThanTheMaximumRange() {
-        int number = NumberGenerator.getRandomNumber( 16, 0 );
+        int number = NumberGenerator.getRandomNumberWithinARange( 16, 0 );
         assertTrue( number < 16 );
+    }
+
+    @Test
+    void shouldGenerateANumberWhichIsAPowerOf2(){
+        int number = NumberGenerator.getRandomNumberWithinARangeAndPowerOf2( 3,1 );
+        assertTrue( number==2 || number==4 );
     }
 }
