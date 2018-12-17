@@ -1,3 +1,5 @@
+package model;
+
 class Cell {
     private int value;
 
@@ -7,5 +9,9 @@ class Cell {
 
     void setValue(int value) {
         this.value = value;
+    }
+
+    void addTwoCellValues(Cell cell){
+        setValue( this.value+cell.value );
     }
 }
