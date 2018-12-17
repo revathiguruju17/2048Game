@@ -32,7 +32,7 @@ class Grid {
         return cells.get( index );
     }
 
-    void updateLeft() {
+    void moveLeft() {
 
     }
 }

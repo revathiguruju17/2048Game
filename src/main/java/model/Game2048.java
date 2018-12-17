@@ -8,6 +8,6 @@ class Game2048 {
     }
 
     void updateGridToLeftPosition() {
-        this.grid.updateLeft();
+        this.grid.moveLeft();
     }
 }
