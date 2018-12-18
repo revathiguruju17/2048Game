@@ -33,6 +33,7 @@ class Grid {
     }
 
     void moveLeft() {
-
+        LeftMover leftMover = new LeftMover();
+        leftMover.move( cells,4 );
     }
 }
