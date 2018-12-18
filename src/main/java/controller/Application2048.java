@@ -1,5 +1,6 @@
 package controller;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -10,10 +11,10 @@ import java.util.List;
 
 class Application2048 {
     public static void main(String[] args) {
+        List<JButton> buttons = new ArrayList<>();
         JFrame frame = new JFrame( "2048" );
         frame.setDefaultCloseOperation( WindowConstants.EXIT_ON_CLOSE );
         frame.setLayout( new GridLayout( 4, 4, 20, 20 ) );
-        List<JButton> buttons = new ArrayList<>();
         for (int i = 0; i < 16; i++) {
             JButton button = new JButton( "" );
             button.setSize( 100, 100 );
@@ -26,6 +27,8 @@ class Application2048 {
             public void keyPressed(KeyEvent e) {
                 int code = e.getKeyCode();
                 if (code == KeyEvent.VK_DOWN) {
+                    //LeftMover leftMover = new LeftMover();
+                    //leftMover.move();
                     System.out.println( "down" );
                 } else if (code == KeyEvent.VK_UP) {
                     System.out.println( "up" );

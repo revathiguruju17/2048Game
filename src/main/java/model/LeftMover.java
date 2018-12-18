@@ -8,12 +8,12 @@ public class LeftMover implements GridMover {
     public void move(List<Cell> cells, int gridSize) {
         int row = 0;
         while (row < gridSize) {
-            moveOneRow( cells, gridSize, row );
+            moveOneRowToLeft( cells, gridSize, row );
             row += 1;
         }
     }
 
-    private void moveOneRow(List<Cell> cells, int gridSize, int row) {
+    private void moveOneRowToLeft(List<Cell> cells, int gridSize, int row) {
         int columnSize = (row + 1) * gridSize;
         int column = (row * gridSize);
         int j = row * gridSize;
