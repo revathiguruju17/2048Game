@@ -1,9 +1,9 @@
 package model;
 
-class Cell {
+public class Cell {
     private int value;
 
-    int getValue() {
+    public int getValue() {
         return value;
     }
 

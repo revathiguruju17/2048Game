@@ -1,12 +1,14 @@
 package controller;
 
 
+import model.Cell;
+import model.Game2048;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 class Application2048 {
@@ -22,33 +24,33 @@ class Application2048 {
             buttons.add( button );
             frame.add( button );
         }
+
+        Game2048 game2048 = new Game2048();
+        game2048.gameSetup();
+
         frame.addKeyListener( new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
+                List<Cell> grid = new ArrayList<>();
                 int code = e.getKeyCode();
                 if (code == KeyEvent.VK_DOWN) {
-                    //LeftMover leftMover = new LeftMover();
-                    //leftMover.move();
-                    System.out.println( "down" );
+                    grid = game2048.moveDown();
                 } else if (code == KeyEvent.VK_UP) {
-                    System.out.println( "up" );
+                    grid = game2048.moveUp();
                 } else if (code == KeyEvent.VK_LEFT) {
-                    System.out.println( "left" );
+                    grid = game2048.moveLeft();
                 } else if (code == KeyEvent.VK_RIGHT) {
-                    System.out.println( "right" );
+                    grid = game2048.moveRight();
                 }
 
-                List<String> list = Arrays.asList(
-                        "2048", "", "", "",
-                        "2", "", "", "",
-                        "2", "", "", "",
-                        "2", "", "", "" );
-                for (int i = 0; i < list.size(); i++) {
-                    buttons.get( i ).setText( "<html><h1>" + list.get( i ) + "</h1></html>" );
+
+                for (int i = 0; i < grid.size(); i++) {
+                    buttons.get( i ).setText( "<html><h1>" + grid.get( i ).getValue() + "</h1></html>" );
+                    if (grid.get( i ).getValue() == 2048) {
+                        JOptionPane.showMessageDialog( frame, "You have won the game" );
+                    }
                 }
-                if (list.contains( "2048" )) {
-                    JOptionPane.showMessageDialog( frame, "You have won the game" );
-                }
+
             }
         } );
         frame.pack();
