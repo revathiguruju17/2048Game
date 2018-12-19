@@ -21,8 +21,17 @@ public class DownMover implements GridMover {
             row = (row * gridSize) + column;
             int value = grid.get( row ).getValue();
             if (value > 0) {
-                for (int k = j; j < rowRange; j++) {
-
+                for (int i = j; i < rowRange; i++) {
+                    if (grid.get( i ).getValue() == value) {
+                        grid.get( i ).addTwoCellValues( grid.get( row ) );
+                        grid.get( column ).setValue( 0 );
+                        j = (row * gridSize) + column;
+                        break;
+                    } else if (grid.get( i ).getValue() == 0) {
+                        grid.get( i ).setValue( value );
+                        grid.get( column ).setValue( 0 );
+                        break;
+                    }
                 }
             }
             row += 1;

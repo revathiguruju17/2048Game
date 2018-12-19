@@ -1,4 +1,6 @@
-package model;
+package controller;
+
+import model.*;
 
 import java.util.List;
 
@@ -28,5 +30,5 @@ public enum Mover {
         }
     };
 
-void move(List<Cell> grid, int size){}
+public void move(List<Cell> grid, int size){}
 }
