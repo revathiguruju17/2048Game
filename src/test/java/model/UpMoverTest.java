@@ -60,9 +60,7 @@ class UpMoverTest {
         grid.get( 2 ).setValue( 2 );
         grid.get( 3 ).setValue( 16 );
         grid.get( 4 ).setValue( 2 );
-        grid.get( 5 ).setValue( 0 );
         grid.get( 6 ).setValue( 4 );
-        grid.get( 7 ).setValue( 0 );
         grid.get( 8 ).setValue( 4 );
         grid.get( 9 ).setValue( 4 );
         grid.get( 10 ).setValue( 2 );
@@ -73,9 +71,6 @@ class UpMoverTest {
         grid.get( 15 ).setValue( 16 );
         UpMover upMover = new UpMover();
         upMover.move( grid, 4 );
-        for (Cell cell : grid) {
-            System.out.print( cell.getValue() + " " );
-        }
         assertEquals( 4, grid.get( 0 ).getValue() );
         assertEquals( 8, grid.get( 1 ).getValue() );
         assertEquals( 2, grid.get( 2 ).getValue() );
