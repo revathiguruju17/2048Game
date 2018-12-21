@@ -30,6 +30,9 @@ public class RightMover implements GridMover {
                         grid.get( column ).setValue( 0 );
                         break;
                     }
+                    else{
+                        j=k-1;
+                    }
                 }
             }
             column -= 1;

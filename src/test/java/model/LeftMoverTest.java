@@ -10,6 +10,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class LeftMoverTest {
 
     @Test
+    void shouldMoveLeftCorrectlyForGivenValuesIn2By2Grid() {
+        List<Cell> grid = Arrays.asList( new Cell(), new Cell(), new Cell(), new Cell() );
+        grid.get( 0 ).setValue( 0 );
+        grid.get( 1 ).setValue( 8 );
+        grid.get( 2 ).setValue( 4 );
+        grid.get( 3 ).setValue( 4 );
+        LeftMover leftMover = new LeftMover();
+        leftMover.move( grid, 2 );
+        assertEquals( 8, grid.get( 0 ).getValue() );
+        assertEquals( 0, grid.get( 1 ).getValue() );
+        assertEquals( 8, grid.get( 2 ).getValue() );
+        assertEquals( 0, grid.get( 3 ).getValue() );
+    }
+
+
+    @Test
     void shouldMoveLeftSideCorrectlyForTheGivenSetOfValuesIn3By3Grid() {
         List<Cell> grid = Arrays.asList( new Cell(), new Cell(), new Cell(), new Cell(), new Cell(),
                 new Cell(), new Cell(), new Cell(), new Cell() );

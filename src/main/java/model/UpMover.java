@@ -30,6 +30,9 @@ public class UpMover implements GridMover {
                         grid.get( row ).setValue( 0 );
                         break;
                     }
+                    else{
+                        j = j+gridSize;
+                    }
                     i += gridSize;
                 }
             }
