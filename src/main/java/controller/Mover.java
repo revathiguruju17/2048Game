@@ -25,8 +25,8 @@ public enum Mover {
     },
     DOWN{
         public void move(List<Cell> grid, int size) {
-            DownMover downMover = new DownMover();
-            downMover.move( grid, size);
+            UpMover upMover = new UpMover();
+            upMover.move( grid, size);
         }
     };
 
