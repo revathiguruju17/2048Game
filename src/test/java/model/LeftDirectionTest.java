@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class LeftMoverTest {
+class LeftDirectionTest {
 
     @Test
     void shouldMoveLeftCorrectlyForGivenValuesIn2By2Grid() {

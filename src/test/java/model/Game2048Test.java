@@ -1,6 +1,6 @@
 package model;
 
-import controller.Mover;
+import controller.Direction;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -12,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Game2048Test {
 
-    private Mover moverMock = Mockito.mock( Mover.class );
+    private Direction directionMock = Mockito.mock( Direction.class );
     private Cell cell = Mockito.mock( Cell.class );
 
     @Test
     void shouldMoveLeftAndRightWhenKeyIsLeftAndRight() {
         Game2048 game2048 = new Game2048();
-        moverMock.move( null,0 );
+        directionMock.move( null,0 );
         List<Cell> initialGrid = new ArrayList<>();
         game2048.gameSetup();
         List<String> keys = Arrays.asList( "LEFT", "RIGHT", "LEFT" );
@@ -26,7 +26,7 @@ class Game2048Test {
         for (String key : keys) {
             updatedGrid = game2048.play( key );
         }
-        moverMock.move( null,0 );
+        directionMock.move( null,0 );
         assertNotEquals( initialGrid, updatedGrid );
     }
 }

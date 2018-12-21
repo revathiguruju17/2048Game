@@ -1,6 +1,6 @@
 package model;
 
-import controller.Mover;
+import controller.Direction;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +24,7 @@ public class Game2048 {
 
 
     List<Cell> play(String key) {
-        Mover.valueOf( key ).move( grid, GRID_SIZE );
+        Direction.valueOf( key ).move( grid, GRID_SIZE );
         int value;
         do {
             int index = NumberGenerator.getRandomNumberWithinARange( 15, 0 );

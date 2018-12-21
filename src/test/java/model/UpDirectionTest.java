@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class UpMoverTest {
+class UpDirectionTest {
 
     @Test
     void shouldMoveUpCorrectlyForGivenValuesIn2By2Grid() {

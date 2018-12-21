@@ -5,3 +5,4 @@ import java.util.List;
 public interface GridMover {
     void move(List<Cell> grid, int gridSize);
 }
+
