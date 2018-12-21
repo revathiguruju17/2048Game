@@ -13,8 +13,8 @@ public class UpMover implements GridMover {
         }
     }
 
-    private void moveOneColumnUp(List<Cell> grid, int gridSize, int row) {
-        int rowRange = ((gridSize - 1) * gridSize) + row;
+    private void moveOneColumnUp(List<Cell> grid, int size, int row) {
+        int rowRange = ((size - 1) * size) + row;
         int j = row;
         while (row <= rowRange) {
             int value = grid.get( row ).getValue();
@@ -23,7 +23,7 @@ public class UpMover implements GridMover {
                     if (grid.get( i ).getValue() == value) {
                         grid.get( i ).addTwoCellValues( grid.get( row ) );
                         grid.get( row ).setValue( 0 );
-                        j = j + gridSize;
+                        j = j + size;
                         break;
                     } else if (grid.get( i ).getValue() == 0) {
                         grid.get( i ).setValue( value );
@@ -31,12 +31,12 @@ public class UpMover implements GridMover {
                         break;
                     }
                     else{
-                        j = j+gridSize;
+                        j = j+size;
                     }
-                    i += gridSize;
+                    i += size;
                 }
             }
-            row = row + gridSize;
+            row = row + size;
         }
     }
 }
