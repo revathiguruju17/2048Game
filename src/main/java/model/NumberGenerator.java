@@ -11,4 +11,5 @@ class NumberGenerator {
         int number = min + (int) (Math.random() * max);
         return (int)Math.pow( 2,number );
     }
+
 }
