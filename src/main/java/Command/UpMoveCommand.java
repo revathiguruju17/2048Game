@@ -1,8 +1,10 @@
-package model;
+package Command;
+
+import model.Cell;
 
 import java.util.List;
 
-public class UpMover implements GridMover {
+public class UpMoveCommand implements Command {
 
     @Override
     public void move(List<Cell> grid, int gridSize) {

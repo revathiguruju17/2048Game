@@ -1,5 +1,7 @@
-package model;
+package Command;
 
+import Command.DownMoveCommand;
+import model.Cell;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,12 +12,12 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class DownMoverTest {
-    private DownMover downMover;
+class DownMoveCommandTest {
+    private DownMoveCommand downMover;
 
     @BeforeEach
     void init() {
-        downMover = new DownMover();
+        downMover = new DownMoveCommand();
     }
 
     @Test

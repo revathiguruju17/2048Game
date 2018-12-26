@@ -1,5 +1,7 @@
-package model;
+package Command;
 
+import Command.RightMoveCommand;
+import model.Cell;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,12 +12,12 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class RightMoverTest {
-    private RightMover rightMover;
+class RightMoveCommandTest {
+    private RightMoveCommand rightMover;
 
     @BeforeEach
     void init(){
-        rightMover = new RightMover();
+        rightMover = new RightMoveCommand();
     }
 
     @Test
