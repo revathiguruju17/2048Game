@@ -19,10 +19,28 @@ class CellTest {
     }
 
     @Test
-    void shouldAddTwoCellValuesCorrectly() {
+    void shouldAddTwoCellValuesCorrectly(){
         Cell cell1 = new Cell(64);
         Cell cell2 = new Cell(64);
         cell1.addTwoCellValues( cell2 );
         assertEquals( 128, cell1.getValue() );
+    }
+
+    @Test
+    void shouldMergeWhenTheTwoCellsConsistsOfEqualValues(){
+        Cell cell1 = new Cell( 8 );
+        Cell cell2 = new Cell( 8 );
+        cell1.merge( cell2 );
+        assertEquals( 16,cell1.getValue() );
+        assertEquals( 0,cell2.getValue() );
+    }
+
+    @Test
+    void shouldShiftFromOneCellValueToAnotherCellValueWhenShiftMethodIsCalled(){
+        Cell cell1 = new Cell( 0 );
+        Cell cell2 = new Cell( 8 );
+        cell1.merge( cell2 );
+        assertEquals( 8,cell1.getValue() );
+        assertEquals( 0,cell2.getValue() );
     }
 }

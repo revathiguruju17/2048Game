@@ -26,4 +26,13 @@ public class Cell {
         Cell cell = (Cell) o;
         return value == cell.value;
     }
+
+    void merge(Cell cell) {
+        this.addTwoCellValues( cell );
+        cell.setValue( 0 );
+    }
+
+    boolean checkCellsForMergingOrShifting(Cell cell) {
+        return this.equals( cell) || this.getValue()==0;
+    }
 }

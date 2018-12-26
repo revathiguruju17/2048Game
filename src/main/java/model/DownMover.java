@@ -20,19 +20,11 @@ public class DownMover implements Mover {
             int value = grid.get( row ).getValue();
             if (value > 0) {
                 for (int i = j; i > row; ) {
-                    if (grid.get( i ).getValue() == value) {
-                        grid.get( i ).addTwoCellValues( grid.get( row ) );
-                        grid.get( row ).setValue( 0 );
-                        j = j - size;
+                    if (GameRules.check( grid.get( i ), grid.get( row ) )) {
                         break;
-                    } else if (grid.get( i ).getValue() == 0) {
-                        grid.get( i ).setValue( value );
-                        grid.get( row ).setValue( 0 );
-                        break;
-                    } else {
-                        j = j - size;
                     }
-                    i -= size;
+                    j = j - size;
+                    i = i - size;
                 }
             }
             row = row - size;

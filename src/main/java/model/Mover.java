@@ -1,6 +1,5 @@
 package model;
 
-import model.Cell;
 
 import java.util.List;
 

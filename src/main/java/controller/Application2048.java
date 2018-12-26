@@ -34,13 +34,13 @@ class Application2048 {
                 List<Cell> grid = new ArrayList<>();
                 int code = e.getKeyCode();
                 if (code == KeyEvent.VK_DOWN) {
-                   // grid = game2048.moveDown();
+                    grid = game2048.play("DOWN");
                 } else if (code == KeyEvent.VK_UP) {
-                   // grid = game2048.moveUp();
+                    grid = game2048.play("UP");
                 } else if (code == KeyEvent.VK_LEFT) {
-                   // grid = game2048.moveLeft();
+                    grid = game2048.play("LEFT");
                 } else if (code == KeyEvent.VK_RIGHT) {
-                   // grid = game2048.moveRight();
+                   grid = game2048.play("RIGHT");
                 }
 
                 for (int i = 0; i < grid.size(); i++) {

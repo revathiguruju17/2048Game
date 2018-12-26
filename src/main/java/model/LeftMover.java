@@ -18,22 +18,12 @@ public class LeftMover implements Mover {
         int column = (row * gridSize);
         int j = row * gridSize;
         while (column < columnSize) {
-            int value = grid.get( column ).getValue();
-            if (value > 0) {
+            if (grid.get( column ).getValue() > 0) {
                 for (int k = j; k < column; k++) {
-                    if (grid.get( k ).getValue() == value) {
-                        grid.get( k ).addTwoCellValues( grid.get( column ) );
-                        grid.get( column ).setValue( 0 );
-                        j = k + 1;
-                        break;
-                    } else if (grid.get( k ).getValue() == 0) {
-                        grid.get( k ).setValue( value );
-                        grid.get( column ).setValue( 0 );
+                    if(GameRules.check(grid.get( k ),grid.get( column ))){
                         break;
                     }
-                    else {
-                        j= k+1;
-                    }
+                    j = k + 1;
                 }
             }
             column += 1;

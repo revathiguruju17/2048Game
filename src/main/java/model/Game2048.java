@@ -11,8 +11,8 @@ public class Game2048 {
     private static final int GAME_MAX_VALUE = 2048;
 
     public Game2048() {
-        grid = Arrays.asList( new Cell( 0 ), new Cell( 0 ), new Cell( 0 ),
-                new Cell( 0 ), new Cell( 0 ), new Cell( 0 ), new Cell( 0 ), new Cell( 0 )
+        grid = Arrays.asList( new Cell( 0 ), new Cell( 0 ), new Cell( 0 ), new Cell( 0 )
+                , new Cell( 0 ), new Cell( 0 ), new Cell( 0 ), new Cell( 0 )
                 , new Cell( 0 ), new Cell( 0 ), new Cell( 0 ), new Cell( 0 ),
                 new Cell( 0 ), new Cell( 0 ), new Cell( 0 ), new Cell( 0 ) );
     }
@@ -27,10 +27,10 @@ public class Game2048 {
         return grid;
     }
 
-    List<Cell> play(String key) {
+    public List<Cell> play(String key) {
         Mover mover = MoverFactory.getMover( key );
         mover.execute( grid, GRID_SIZE );
-        if (checkWhetherTheGridConsistsOf2048()) {
+        if (checkWhetherTheGridContains2048()) {
             System.out.println( "win" );
         }
         if (!checkWhetherTheGridConsistsOfAnEmptyCell()) {
@@ -41,7 +41,7 @@ public class Game2048 {
         return grid;
     }
 
-    private Boolean checkWhetherTheGridConsistsOf2048() {
+    private Boolean checkWhetherTheGridContains2048() {
         boolean isGridContains2048 = false;
         for (Cell cell : grid) {
             if (cell.getValue() == GAME_MAX_VALUE) {
