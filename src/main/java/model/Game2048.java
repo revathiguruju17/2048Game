@@ -1,7 +1,5 @@
 package model;
 
-import controller.Direction;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,7 +27,8 @@ public class Game2048 {
 
 
     List<Cell> play(String key) {
-        Direction.valueOf( key ).move( grid, GRID_SIZE );
+        GridMover gridMover = findDirection( key );
+        gridMover.move( grid,GRID_SIZE );
         if (checkWhethertheGridConsistsOf2048()) {
             System.out.println( "win" );
         }
@@ -39,6 +38,27 @@ public class Game2048 {
             createOneCell();
         }
         return grid;
+    }
+
+    private GridMover findDirection(String key) {
+        GridMover gridMover ;
+        switch (key) {
+            case "left":
+                gridMover = new LeftMover();
+                break;
+            case "right":
+                gridMover = new RightMover();
+                break;
+            case "up":
+                gridMover = new UpMover();
+                break;
+            case "down":
+                gridMover = new DownMover();
+                break;
+            default:
+                gridMover = new DownMover();
+        }
+        return gridMover;
     }
 
     private Boolean checkWhethertheGridConsistsOf2048() {
