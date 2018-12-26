@@ -1,7 +1,5 @@
-package Command;
+package model;
 
-import Command.DownMoveCommand;
-import model.Cell;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,25 +10,25 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class DownMoveCommandTest {
-    private DownMoveCommand downMover;
+class DownMoverTest {
+    private DownMover downMover;
 
     @BeforeEach
     void init() {
-        downMover = new DownMoveCommand();
+        downMover = new DownMover();
     }
 
     @Test
     void shouldNotMoveDownWhenTheGridIsNull() {
         List<Cell> grid = new ArrayList<>();
-        downMover.move( grid, 0 );
+        downMover.execute( grid, 0 );
         assertTrue( grid.isEmpty() );
     }
 
     @Test
     void shouldNotMoveDownWhenTheGridConsistsOfOnlyOneRow() {
         List<Cell> grid = Arrays.asList( new Cell( 4 ), new Cell( 2 ) );
-        downMover.move( grid, 1 );
+        downMover.execute( grid, 1 );
         assertEquals( 4, grid.get( 0 ).getValue() );
         assertEquals( 2, grid.get( 1 ).getValue() );
     }
@@ -39,7 +37,7 @@ class DownMoveCommandTest {
     void shouldMoveDownWhenTheDownCellIsEmpty() {
         List<Cell> grid = Arrays.asList( new Cell( 2 ), new Cell( 4 ),
                 new Cell( 0 ), new Cell( 0 ) );
-        downMover.move( grid, 2 );
+        downMover.execute( grid, 2 );
         assertEquals( 0, grid.get( 0 ).getValue() );
         assertEquals( 0, grid.get( 1 ).getValue() );
         assertEquals( 2, grid.get( 2 ).getValue() );
@@ -50,7 +48,7 @@ class DownMoveCommandTest {
     void shouldMergeWhenThereAreTwoCellsOfSameValuesInVertical() {
         List<Cell> grid = Arrays.asList( new Cell( 2 ), new Cell( 4 ),
                 new Cell( 2 ), new Cell( 4 ) );
-        downMover.move( grid, 2 );
+        downMover.execute( grid, 2 );
         assertEquals( 0, grid.get( 0 ).getValue() );
         assertEquals( 0, grid.get( 1 ).getValue() );
         assertEquals( 4, grid.get( 2 ).getValue() );
@@ -61,7 +59,7 @@ class DownMoveCommandTest {
     void shouldNotMoveDownWhenTheUpperCellIsEmptyAndDownCellIsNotEmpty() {
         List<Cell> grid = Arrays.asList( new Cell( 0 ), new Cell( 0 ),
                 new Cell( 2 ), new Cell( 4 ) );
-        downMover.move( grid, 2 );
+        downMover.execute( grid, 2 );
         assertEquals( 0, grid.get( 0 ).getValue() );
         assertEquals( 0, grid.get( 1 ).getValue() );
         assertEquals( 2, grid.get( 2 ).getValue() );
@@ -72,7 +70,7 @@ class DownMoveCommandTest {
     void shouldNotMoveDownWhenThereAreTwoDifferentValuesInVerticalRatherThan0() {
         List<Cell> grid = Arrays.asList( new Cell( 2 ), new Cell( 4 ),
                 new Cell( 8 ), new Cell( 16 ) );
-        downMover.move( grid, 2 );
+        downMover.execute( grid, 2 );
         assertEquals( 2, grid.get( 0 ).getValue() );
         assertEquals( 4, grid.get( 1 ).getValue() );
         assertEquals( 8, grid.get( 2 ).getValue() );
@@ -83,7 +81,7 @@ class DownMoveCommandTest {
     void shouldMoveDownCorrectlyForGivenValuesIn2By2Grid() {
         List<Cell> grid = Arrays.asList( new Cell( 8 ), new Cell( 16 ),
                 new Cell( 0 ), new Cell( 16 ) );
-        downMover.move( grid, 2 );
+        downMover.execute( grid, 2 );
         assertEquals( 0, grid.get( 0 ).getValue() );
         assertEquals( 0, grid.get( 1 ).getValue() );
         assertEquals( 8, grid.get( 2 ).getValue() );

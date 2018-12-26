@@ -1,7 +1,6 @@
 package model;
 
-import Command.*;
-import controller.Path;
+import Factory.MoverFactory;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,9 +27,9 @@ public class Game2048 {
         return grid;
     }
 
-
     List<Cell> play(String key) {
-        Path.valueOf(key).move(grid,GRID_SIZE);
+        Mover mover = MoverFactory.getMover( key );
+        mover.execute( grid, GRID_SIZE );
         if (checkWhetherTheGridConsistsOf2048()) {
             System.out.println( "win" );
         }

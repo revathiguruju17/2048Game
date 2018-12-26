@@ -1,12 +1,10 @@
-package Command;
-
-import model.Cell;
+package model;
 
 import java.util.List;
 
-public class RightMoveCommand implements Command {
+public class RightMover implements Mover {
     @Override
-    public void move(List<Cell> grid, int size) {
+    public void execute(List<Cell> grid, int size) {
         int row = size - 1;
         while (row >= 0) {
             moveOneRowToRight( grid, size, row );

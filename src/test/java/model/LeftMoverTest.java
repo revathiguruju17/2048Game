@@ -1,7 +1,5 @@
-package Command;
+package model;
 
-import Command.LeftMoveCommand;
-import model.Cell;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,25 +11,25 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class LeftMoveCommandTest {
-    private LeftMoveCommand leftMover;
+class LeftMoverTest {
+    private Mover leftMover;
 
     @BeforeEach
     void init(){
-        leftMover = new LeftMoveCommand();
+        leftMover = new LeftMover();
     }
 
     @Test
     void shouldNotMoveLeftWhenTheGridIsNull() {
         List<Cell> grid = new ArrayList<>();
-        leftMover.move( grid,0 );
+        leftMover.execute( grid,0 );
         assertTrue( grid.isEmpty() );
     }
 
     @Test
     void shouldNotMoveLeftWhenTheGridConsistsOfOnlyOneCell(){
         List<Cell> grid = Collections.singletonList( new Cell(4) );
-        leftMover.move( grid,1 );
+        leftMover.execute( grid,1 );
         assertEquals( 4,grid.get( 0 ).getValue() );
     }
 
@@ -39,7 +37,7 @@ class LeftMoveCommandTest {
     void shouldMoveLeftWhenTheLeftCellIsEmpty(){
         List<Cell> grid = Arrays.asList( new Cell(0), new Cell(2),
                 new Cell(0), new Cell(4) );
-        leftMover.move( grid,2 );
+        leftMover.execute( grid,2 );
         assertEquals( 2, grid.get( 0 ).getValue() );
         assertEquals( 0, grid.get( 1 ).getValue() );
         assertEquals( 4, grid.get( 2 ).getValue() );
@@ -47,10 +45,10 @@ class LeftMoveCommandTest {
     }
 
     @Test
-    void shouldMergeWhenThereAreTwoCellsOfSameValuesInVHorizontal(){
-        List<Cell> grid = Arrays.asList( new Cell(2), new Cell(4),
-                new Cell(2), new Cell(4) );
-        leftMover.move( grid,2 );
+    void shouldMergeWhenThereAreTwoCellsOfSameValuesInHorizontal(){
+        List<Cell> grid = Arrays.asList( new Cell(2), new Cell(2),
+                new Cell(4), new Cell(4) );
+        leftMover.execute( grid,2 );
         assertEquals( 4, grid.get( 0 ).getValue() );
         assertEquals( 0, grid.get( 1 ).getValue() );
         assertEquals( 8, grid.get( 2 ).getValue() );
@@ -61,7 +59,7 @@ class LeftMoveCommandTest {
     void shouldNotMoveLeftWhenTheLeftCellIsNotEmptyAndRightCellIsEmpty(){
         List<Cell> grid = Arrays.asList( new Cell(2), new Cell(0),
                 new Cell(4), new Cell(0) );
-        leftMover.move( grid,2 );
+        leftMover.execute( grid,2 );
         assertEquals( 2, grid.get( 0 ).getValue() );
         assertEquals( 0, grid.get( 1 ).getValue() );
         assertEquals( 4, grid.get( 2 ).getValue() );
@@ -72,7 +70,7 @@ class LeftMoveCommandTest {
     void shouldNotMoveLeftWhenThereAreTwoDifferentValuesInARowRatherThan0(){
         List<Cell> grid = Arrays.asList( new Cell(2), new Cell(4),
                 new Cell(8), new Cell(16) );
-        leftMover.move( grid,2 );
+        leftMover.execute( grid,2 );
         assertEquals( 2, grid.get( 0 ).getValue() );
         assertEquals( 4, grid.get( 1 ).getValue() );
         assertEquals( 8, grid.get( 2 ).getValue() );

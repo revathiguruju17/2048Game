@@ -1,44 +1,41 @@
-package Command;
-
-import model.Cell;
+package model;
 
 import java.util.List;
 
-public class UpMoveCommand implements Command {
+public class DownMover implements Mover {
 
     @Override
-    public void move(List<Cell> grid, int gridSize) {
+    public void execute(List<Cell> grid, int size) {
         int column = 0;
-        while (column < gridSize) {
-            moveOneColumnUp( grid, gridSize, column );
+        while (column < size) {
+            moveOneColumnDown( grid, size, column );
             column += 1;
         }
     }
 
-    private void moveOneColumnUp(List<Cell> grid, int size, int row) {
-        int rowRange = ((size - 1) * size) + row;
+    private void moveOneColumnDown(List<Cell> grid, int size, int range) {
+        int row = ((size - 1) * size) + range;
         int j = row;
-        while (row <= rowRange) {
+        while (row >= range) {
             int value = grid.get( row ).getValue();
             if (value > 0) {
-                for (int i = j; i < row; ) {
+                for (int i = j; i > row; ) {
                     if (grid.get( i ).getValue() == value) {
                         grid.get( i ).addTwoCellValues( grid.get( row ) );
                         grid.get( row ).setValue( 0 );
-                        j = j + size;
+                        j = j - size;
                         break;
                     } else if (grid.get( i ).getValue() == 0) {
                         grid.get( i ).setValue( value );
                         grid.get( row ).setValue( 0 );
                         break;
+                    } else {
+                        j = j - size;
                     }
-                    else{
-                        j = j+size;
-                    }
-                    i += size;
+                    i -= size;
                 }
             }
-            row = row + size;
+            row = row - size;
         }
     }
 }

@@ -12,11 +12,11 @@ public class Cell {
         return value;
     }
 
-    public void setValue(int value) {
+    void setValue(int value) {
         this.value = value;
     }
 
-    public void addTwoCellValues(Cell cell){
+    void addTwoCellValues(Cell cell){
         setValue( this.value+cell.value );
     }
 

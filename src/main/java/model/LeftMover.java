@@ -1,13 +1,11 @@
-package Command;
-
-import model.Cell;
+package model;
 
 import java.util.List;
 
-public class LeftMoveCommand implements Command {
+public class LeftMover implements Mover {
 
     @Override
-    public void move(List<Cell> grid, int gridSize) {
+    public void execute(List<Cell> grid, int gridSize) {
         int row = 0;
         while (row < gridSize) {
             moveOneRowToLeft( grid, gridSize, row );

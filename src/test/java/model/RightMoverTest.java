@@ -1,7 +1,5 @@
-package Command;
+package model;
 
-import Command.RightMoveCommand;
-import model.Cell;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,18 +10,18 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class RightMoveCommandTest {
-    private RightMoveCommand rightMover;
+class RightMoverTest {
+    private Mover rightMover;
 
     @BeforeEach
     void init(){
-        rightMover = new RightMoveCommand();
+        rightMover = new RightMover();
     }
 
     @Test
     void shouldNotMoveRightWhenTheGridIsNull() {
         List<Cell> grid = new ArrayList<>();
-        rightMover.move( grid,0 );
+        rightMover.execute( grid,0 );
         assertTrue( grid.isEmpty() );
     }
 
@@ -31,7 +29,7 @@ class RightMoveCommandTest {
     void shouldMoveRightWhenTheRightCellIsEmpty(){
         List<Cell> grid = Arrays.asList( new Cell(2), new Cell(0),
                 new Cell(4), new Cell(0) );
-        rightMover.move( grid,2 );
+        rightMover.execute( grid,2 );
         assertEquals( 0, grid.get( 0 ).getValue() );
         assertEquals( 2, grid.get( 1 ).getValue() );
         assertEquals( 0, grid.get( 2 ).getValue() );
@@ -42,7 +40,7 @@ class RightMoveCommandTest {
     void shouldMergeWhenThereAreTwoCellsOfSameValuesInARow(){
         List<Cell> grid = Arrays.asList( new Cell(2), new Cell(2),
                 new Cell(4), new Cell(4) );
-        rightMover.move( grid,2 );
+        rightMover.execute( grid,2 );
         assertEquals( 0, grid.get( 0 ).getValue() );
         assertEquals( 4, grid.get( 1 ).getValue() );
         assertEquals( 0, grid.get( 2 ).getValue() );
@@ -53,7 +51,7 @@ class RightMoveCommandTest {
     void shouldNotMoveRightWhenTheLeftCellIsEmptyAndRightCellIsNotEmpty(){
         List<Cell> grid = Arrays.asList( new Cell(0), new Cell(2),
                 new Cell(0), new Cell(4) );
-        rightMover.move( grid,2 );
+        rightMover.execute( grid,2 );
         assertEquals( 0, grid.get( 0 ).getValue() );
         assertEquals( 2, grid.get( 1 ).getValue() );
         assertEquals( 0, grid.get( 2 ).getValue() );
@@ -64,7 +62,7 @@ class RightMoveCommandTest {
     void shouldNotMoveRightWhenThereAreTwoDifferentValuesInRowRatherThan0(){
         List<Cell> grid = Arrays.asList( new Cell(2), new Cell(4),
                 new Cell(8), new Cell(16) );
-        rightMover.move( grid,2 );
+        rightMover.execute( grid,2 );
         assertEquals( 2, grid.get( 0 ).getValue() );
         assertEquals( 4, grid.get( 1 ).getValue() );
         assertEquals( 8, grid.get( 2 ).getValue() );
