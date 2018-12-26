@@ -11,9 +11,9 @@ public class Game2048 {
     private List<Cell> grid;
 
     public void gameSetup() {
-        grid = Arrays.asList( new Cell(), new Cell(), new Cell(), new Cell(),
-                new Cell(), new Cell(), new Cell(), new Cell(), new Cell(), new Cell(), new Cell(),
-                new Cell(), new Cell(), new Cell(), new Cell(), new Cell() );
+        grid = Arrays.asList( new Cell(0), new Cell(0), new Cell(0), new Cell(0),
+                new Cell(0), new Cell(0), new Cell(0), new Cell(0), new Cell(0), new Cell(0),
+                new Cell(0), new Cell(0), new Cell(0), new Cell(0), new Cell(0), new Cell(0) );
         int index1 = NumberGenerator.getRandomNumberWithinARange( 15, 0 );
         int index2 = NumberGenerator.getRandomNumberWithinARange( 15, 0 );
         int value1 = NumberGenerator.getRandomNumberWithinARangeAndPowerOf2( 2, 1 );
