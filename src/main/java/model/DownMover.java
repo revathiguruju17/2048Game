@@ -8,26 +8,32 @@ public class DownMover implements Mover {
     public void execute(List<Cell> grid, int size) {
         int column = 0;
         while (column < size) {
-            moveOneColumnDown( grid, size, column );
+            moveOneColumnDown(grid, size, column);
             column += 1;
         }
     }
 
     private void moveOneColumnDown(List<Cell> grid, int size, int range) {
-        int row = ((size - 1) * size) + range;
-        int j = row;
-        while (row >= range) {
-            int value = grid.get( row ).getValue();
+        int currentRow = ((size - 1) * size) + range;
+        int j = currentRow;
+        while (currentRow >= range) {
+            int value = grid.get(currentRow).getValue();
             if (value > 0) {
-                for (int i = j; i > row; ) {
-                    //if (GameRules.check( grid.get( i ), grid.get( row ) )) {
-                     //   break;
-                   // }
-                    j = j - size;
-                    //i = i - size;
+                for (int i = j; i > currentRow; ) {
+                    if (GameRules.isShouldMerge(grid.get(i), grid.get(currentRow))) {
+                        grid.get(i).merge(grid.get(currentRow));
+                        j = j - size;
+                        break;
+                    } else if (GameRules.isShouldShift(grid.get(i))) {
+                        grid.get(i).shift(grid.get(currentRow));
+                        break;
+                    } else {
+                        j = j - size;
+                    }
+                    i = i - size;
                 }
             }
-            row = row - size;
+            currentRow = currentRow - size;
         }
     }
 }

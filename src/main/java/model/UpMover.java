@@ -13,21 +13,27 @@ public class UpMover implements Mover {
         }
     }
 
-    private void moveOneColumnUp(List<Cell> grid, int size, int row) {
-        int rowRange = ((size - 1) * size) + row;
-        int j = row;
-        while (row <= rowRange) {
-            int value = grid.get( row ).getValue();
+    private void moveOneColumnUp(List<Cell> grid, int size, int currentRow) {
+        int rowRange = ((size - 1) * size) + currentRow;
+        int j = currentRow;
+        while (currentRow <= rowRange) {
+            int value = grid.get( currentRow ).getValue();
             if (value > 0) {
-                for (int i = j; i < row; ) {
-                  //  if (GameRules.check( grid.get( i ), grid.get( row ) )) {
-                     //   break;
-                    //}
-                    j = j + size;
-                   // i += size;
+                for (int i = j; i < currentRow; ) {
+                    if (GameRules.isShouldMerge(grid.get(i), grid.get(currentRow))) {
+                        grid.get(i).merge(grid.get(currentRow));
+                        j = j + size;
+                        break;
+                    } else if (GameRules.isShouldShift(grid.get(i))) {
+                        grid.get(i).shift(grid.get(currentRow));
+                        break;
+                    } else {
+                        j = j + size;
+                    }
+                    i = i + size;
                 }
             }
-            row = row + size;
+            currentRow = currentRow + size;
         }
     }
 }
