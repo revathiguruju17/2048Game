@@ -31,25 +31,25 @@ class Application2048 {
         frame.addKeyListener( new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                List<Cell> grid = new ArrayList<>();
                 int code = e.getKeyCode();
                 if (code == KeyEvent.VK_DOWN) {
-                    grid = game2048.play("DOWN");
+                    game2048.play( "DOWN" );
                 } else if (code == KeyEvent.VK_UP) {
-                    grid = game2048.play("UP");
+                    game2048.play( "UP" );
                 } else if (code == KeyEvent.VK_LEFT) {
-                    grid = game2048.play("LEFT");
+                    game2048.play( "LEFT" );
                 } else if (code == KeyEvent.VK_RIGHT) {
-                   grid = game2048.play("RIGHT");
+                    game2048.play( "RIGHT" );
                 }
-
+                List<Cell> grid = game2048.getGrid();
                 for (int i = 0; i < grid.size(); i++) {
-                    buttons.get( i ).setText( "<html><h1>" + grid.get( i ).getValue() + "</h1></html>" );
+                    if (grid.get( i ).getValue() > 0) {
+                        buttons.get( i ).setText( "<html><h1>" + grid.get( i ).getValue() + "</h1></html>" );
+                    }
                     if (grid.get( i ).getValue() == 2048) {
                         JOptionPane.showMessageDialog( frame, "You have won the game" );
                     }
                 }
-
             }
         } );
         frame.pack();

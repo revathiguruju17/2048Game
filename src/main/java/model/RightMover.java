@@ -14,19 +14,25 @@ public class RightMover implements Mover {
 
     private void moveOneRowToRight(List<Cell> grid, int gridSize, int row) {
         int columnSize = (row * gridSize);
-        int column = ((row + 1) * gridSize) - 1;
-        int j = ((row + 1) * gridSize) - 1;
-        while (column >= columnSize) {
-            int value = grid.get( column ).getValue();
+        int currentColumn = ((row + 1) * gridSize) - 1;
+        int j = currentColumn;
+        while (currentColumn >= columnSize) {
+            int value = grid.get( currentColumn ).getValue();
             if (value > 0) {
-                for (int k = j; k > column; k--) {
-                    if (GameRules.check( grid.get( k ), grid.get( column ) )) {
+                for (int k = j; k > currentColumn; k--) {
+                    if (GameRules.isShouldMerge( grid.get( k ), grid.get( currentColumn ) )) {
+                        grid.get( k ).merge( grid.get( currentColumn ) );
+                        j = k - 1;
                         break;
+                    } else if (GameRules.isShouldShift( grid.get( k ) )) {
+                        grid.get( k ).shift( grid.get( currentColumn ) );
+                        break;
+                    } else {
+                        j = k - 1;
                     }
-                    j = k - 1;
                 }
             }
-            column -= 1;
+            currentColumn -= 1;
         }
     }
 }

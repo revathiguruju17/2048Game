@@ -10,8 +10,8 @@ class GameRulesTest {
     void shouldMergeAndReturnTrueWhenTheTwoCellValuesAreEqual(){
         Cell cell1 = new Cell( 4 );
         Cell cell2 = new Cell( 4 );
-        boolean shouldMergeOrShift = GameRules.check( cell1,cell2 );
-        assertTrue(shouldMergeOrShift);
+        boolean shouldMerge = GameRules.isShouldMerge( cell1,cell2 );
+        assertTrue(shouldMerge);
         assertEquals(8,cell1.getValue());
         assertEquals( 0,cell2.getValue() );
     }
@@ -20,8 +20,8 @@ class GameRulesTest {
     void shouldNotMergeAndReturnFalseWhenTheTwoCellValuesAreUnEqual(){
         Cell cell1 = new Cell( 4 );
         Cell cell2 = new Cell( 8 );
-        boolean shouldMergeOrShift = GameRules.check( cell1,cell2 );
-        assertFalse(shouldMergeOrShift);
+        boolean shouldMerge = GameRules.isShouldMerge( cell1,cell2 );
+        assertFalse(shouldMerge);
         assertEquals(4,cell1.getValue());
         assertEquals( 8,cell2.getValue() );
     }
@@ -30,8 +30,8 @@ class GameRulesTest {
     void shouldShiftAndReturnTrueWhenTheFirstCellValueIsZero(){
         Cell cell1 = new Cell( 0 );
         Cell cell2 = new Cell( 4 );
-        boolean shouldMergeOrShift = GameRules.check( cell1,cell2 );
-        assertTrue(shouldMergeOrShift);
+        boolean shouldShift = GameRules.isShouldShift( cell1 );
+        assertTrue(shouldShift);
         assertEquals(4,cell1.getValue());
         assertEquals( 0,cell2.getValue() );
     }
@@ -40,8 +40,8 @@ class GameRulesTest {
     void shouldNotShiftAndReturnFalseWhenTheFirstCellValueIsNotZeroAndSecondCellValueIsZero(){
         Cell cell1 = new Cell( 8 );
         Cell cell2 = new Cell( 0 );
-        boolean shouldMergeOrShift = GameRules.check( cell1,cell2 );
-        assertFalse(shouldMergeOrShift);
+        boolean shouldShift = GameRules.isShouldShift( cell1 );
+        assertFalse(shouldShift);
         assertEquals(8,cell1.getValue());
         assertEquals( 0,cell2.getValue() );
     }

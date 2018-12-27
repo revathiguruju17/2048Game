@@ -5,11 +5,11 @@ import model.*;
 public class MoverFactory {
     public static Mover getMover(String name){
         switch (name) {
-            case "left":
+            case "LEFT":
                 return new LeftMover();
-            case "right":
+            case "RIGHT":
                 return new RightMover();
-            case "up":
+            case "UP":
                 return new UpMover();
             default:
                 return new DownMover();

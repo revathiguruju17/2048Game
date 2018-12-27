@@ -1,11 +1,11 @@
 package model;
 
 class GameRules {
-    static boolean check(Cell cell, Cell cell1) {
-        boolean shouldMergeOrShift =cell.checkCellsForMergingOrShifting( cell1 );
-        if(shouldMergeOrShift){
-            cell.merge( cell1 );
-        }
-        return shouldMergeOrShift;
+    static boolean isShouldMerge(Cell cell1, Cell cell2) {
+        return cell1.checkCellsForMerging( cell2 );
+    }
+
+    static boolean isShouldShift(Cell cell1 ) {
+        return cell1.checkCellsForShifting(  );
     }
 }

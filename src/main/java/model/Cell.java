@@ -32,7 +32,16 @@ public class Cell {
         cell.setValue( 0 );
     }
 
-    boolean checkCellsForMergingOrShifting(Cell cell) {
-        return this.equals( cell) || this.getValue()==0;
+    boolean checkCellsForMerging(Cell cell) {
+        return this.equals( cell);
+    }
+
+    boolean checkCellsForShifting() {
+        return this.getValue()==0 ;
+    }
+
+    void shift(Cell cell2) {
+        this.setValue( cell2.getValue() );
+        cell2.setValue( 0 );
     }
 }

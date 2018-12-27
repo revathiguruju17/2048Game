@@ -17,17 +17,16 @@ public class Game2048 {
                 new Cell( 0 ), new Cell( 0 ), new Cell( 0 ), new Cell( 0 ) );
     }
 
-    public List<Cell> gameSetup() {
+    public void gameSetup() {
         int index1 = NumberGenerator.getRandomNumberWithinARange( 15, 0 );
         int index2 = NumberGenerator.getRandomNumberWithinARange( 15, 0 );
         int value1 = NumberGenerator.getRandomNumberWithinARangeAndPowerOf2( 2, 1 );
         int value2 = NumberGenerator.getRandomNumberWithinARangeAndPowerOf2( 2, 1 );
         grid.get( index1 ).setValue( value1 );
         grid.get( index2 ).setValue( value2 );
-        return grid;
     }
 
-    public List<Cell> play(String key) {
+    public void play(String key) {
         Mover mover = MoverFactory.getMover( key );
         mover.execute( grid, GRID_SIZE );
         if (checkWhetherTheGridContains2048()) {
@@ -38,7 +37,6 @@ public class Game2048 {
         } else {
             createOneCell();
         }
-        return grid;
     }
 
     private Boolean checkWhetherTheGridContains2048() {
@@ -74,4 +72,7 @@ public class Game2048 {
         } while (value != 0);
     }
 
+    public List<Cell> getGrid() {
+        return grid;
+    }
 }

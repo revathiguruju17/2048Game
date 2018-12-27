@@ -11,7 +11,8 @@ class Game2048Test {
     @Test
     void shouldInitializeOnlyTwoCellValuesWhenGameSetUpMethodIsCalled() {
         Game2048 game2048 = new Game2048();
-        List<Cell> grid = game2048.gameSetup();
+        game2048.gameSetup();
+        List<Cell> grid = game2048.getGrid();
         int updatedCells =0;
         for (Cell cell:grid) {
             if(cell.getValue()!=0){

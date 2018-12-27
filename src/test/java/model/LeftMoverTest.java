@@ -76,4 +76,28 @@ class LeftMoverTest {
         assertEquals( 8, grid.get( 2 ).getValue() );
         assertEquals( 16, grid.get( 3 ).getValue() );
     }
+
+    @Test
+    void checkingForRulesLikeMergingAndShiftingIn4By4Grid(){
+        List<Cell> grid = Arrays.asList(new Cell(4),new Cell(4),new Cell(8),new Cell(8),new Cell(0),
+                new Cell(4),new Cell(4),new Cell(0),new Cell(16),new Cell(16),
+                new Cell(8),new Cell(2),new Cell(0),new Cell(0),new Cell(2),new Cell(4));
+        leftMover.execute( grid,4 );
+        assertEquals( 8, grid.get( 0 ).getValue() );
+        assertEquals( 16, grid.get( 1 ).getValue() );
+        assertEquals( 0, grid.get( 2 ).getValue() );
+        assertEquals( 0, grid.get( 3 ).getValue() );
+        assertEquals( 8, grid.get( 4 ).getValue() );
+        assertEquals( 0, grid.get( 5 ).getValue() );
+        assertEquals( 0, grid.get( 6 ).getValue() );
+        assertEquals( 0, grid.get( 7 ).getValue() );
+        assertEquals( 32, grid.get( 8 ).getValue() );
+        assertEquals( 8, grid.get( 9 ).getValue() );
+        assertEquals( 2, grid.get( 10 ).getValue() );
+        assertEquals( 0, grid.get( 11 ).getValue() );
+        assertEquals( 2, grid.get( 12 ).getValue() );
+        assertEquals( 4, grid.get( 13 ).getValue() );
+        assertEquals( 0, grid.get( 14 ).getValue() );
+        assertEquals( 0, grid.get( 15 ).getValue() );
+    }
 }
