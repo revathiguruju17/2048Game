@@ -2,6 +2,9 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameRulesTest {
@@ -12,8 +15,6 @@ class GameRulesTest {
         Cell cell2 = new Cell( 4 );
         boolean shouldMerge = GameRules.isShouldMerge( cell1,cell2 );
         assertTrue(shouldMerge);
-        assertEquals(8,cell1.getValue());
-        assertEquals( 0,cell2.getValue() );
     }
 
     @Test
@@ -22,8 +23,6 @@ class GameRulesTest {
         Cell cell2 = new Cell( 8 );
         boolean shouldMerge = GameRules.isShouldMerge( cell1,cell2 );
         assertFalse(shouldMerge);
-        assertEquals(4,cell1.getValue());
-        assertEquals( 8,cell2.getValue() );
     }
 
     @Test
@@ -32,8 +31,6 @@ class GameRulesTest {
         Cell cell2 = new Cell( 4 );
         boolean shouldShift = GameRules.isShouldShift( cell1 );
         assertTrue(shouldShift);
-        assertEquals(4,cell1.getValue());
-        assertEquals( 0,cell2.getValue() );
     }
 
     @Test
@@ -42,7 +39,29 @@ class GameRulesTest {
         Cell cell2 = new Cell( 0 );
         boolean shouldShift = GameRules.isShouldShift( cell1 );
         assertFalse(shouldShift);
-        assertEquals(8,cell1.getValue());
-        assertEquals( 0,cell2.getValue() );
+    }
+
+    @Test
+    void shouldReturnTrueIfTheGridContains2048(){
+        List<Cell> grid = Arrays.asList(new Cell(0),new Cell(2048), new Cell(8), new Cell(16));
+        assertTrue(GameRules.checkWhetherTheGridContains2048(grid));
+    }
+
+    @Test
+    void shouldReturnFalseIfTheGridDoesNotContains2048(){
+        List<Cell> grid = Arrays.asList(new Cell(0),new Cell(48), new Cell(8), new Cell(16));
+        assertFalse(GameRules.checkWhetherTheGridContains2048(grid));
+    }
+
+    @Test
+    void shouldReturnTrueIfTheGridConsistsOfAnEmptyCell(){
+        List<Cell> grid = Arrays.asList(new Cell(8),new Cell(2048), new Cell(8), new Cell(0));
+        assertTrue(GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid));
+    }
+
+    @Test
+    void shouldReturnFalseIfTheGridIsFull(){
+        List<Cell> grid = Arrays.asList(new Cell(8),new Cell(48), new Cell(8), new Cell(16));
+        assertFalse(GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid));
     }
 }
