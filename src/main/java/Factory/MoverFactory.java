@@ -2,15 +2,17 @@ package Factory;
 
 import model.*;
 
+import java.awt.event.KeyEvent;
+
 public class MoverFactory {
-    public static Mover getMover(String name){
-        switch (name) {
-            case "LEFT":
+    public static Mover getMover(int code) {
+        switch (code) {
+            case KeyEvent.VK_LEFT:
                 return new LeftMover();
-            case "RIGHT":
-                return new RightMover();
-            case "UP":
+            case KeyEvent.VK_UP:
                 return new UpMover();
+            case KeyEvent.VK_RIGHT:
+                return new RightMover();
             default:
                 return new DownMover();
         }

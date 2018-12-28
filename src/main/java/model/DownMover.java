@@ -20,11 +20,11 @@ public class DownMover implements Mover {
             int value = grid.get(currentRow).getValue();
             if (value > 0) {
                 for (int i = j; i > currentRow; ) {
-                    if (GameRules.isShouldMerge(grid.get(i), grid.get(currentRow))) {
+                    if (GameRules.shouldMerge(grid.get(i), grid.get(currentRow))) {
                         grid.get(i).merge(grid.get(currentRow));
                         j = j - size;
                         break;
-                    } else if (GameRules.isShouldShift(grid.get(i))) {
+                    } else if (GameRules.shouldShift(grid.get(i))) {
                         grid.get(i).shift(grid.get(currentRow));
                         break;
                     } else {

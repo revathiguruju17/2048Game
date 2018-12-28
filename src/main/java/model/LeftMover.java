@@ -8,7 +8,7 @@ public class LeftMover implements Mover {
     public void execute(List<Cell> grid, int gridSize) {
         int row = 0;
         while (row < gridSize) {
-            moveOneRowToLeft( grid, gridSize, row );
+            moveOneRowToLeft(grid, gridSize, row);
             row += 1;
         }
     }
@@ -18,19 +18,17 @@ public class LeftMover implements Mover {
         int currentColumn = (currentRow * gridSize);
         int j = currentRow * gridSize;
         while (currentColumn < columnSize) {
-            if (grid.get( currentColumn ).getValue() > 0) {
+            if (grid.get(currentColumn).getValue() > 0) {
                 for (int k = j; k < currentColumn; k++) {
-                    if (GameRules.isShouldMerge(grid.get( k ),grid.get( currentColumn ))) {
-                        grid.get( k ).merge( grid.get( currentColumn ) );
+                    if (GameRules.shouldMerge(grid.get(k), grid.get(currentColumn))) {
+                        grid.get(k).merge(grid.get(currentColumn));
                         j = k + 1;
                         break;
-                    }
-                    else if (GameRules.isShouldShift(grid.get( k ))) {
-                        grid.get( k ).shift( grid.get( currentColumn ) );
+                    } else if (GameRules.shouldShift(grid.get(k))) {
+                        grid.get(k).shift(grid.get(currentColumn));
                         break;
-                    }
-                    else{
-                        j = k+1;
+                    } else {
+                        j = k + 1;
                     }
                 }
             }

@@ -16,31 +16,21 @@ public class Game2048 {
                 new Cell(0), new Cell(0), new Cell(0), new Cell(0));
     }
 
-    public void gameSetup() {
-        int index1 = NumberGenerator.getRandomNumberWithinARange(15, 0);
-        int index2 = NumberGenerator.getRandomNumberWithinARange(15, 0);
-        int value1 = NumberGenerator.getRandomNumberWithinARangeAndPowerOf2(2, 1);
-        int value2 = NumberGenerator.getRandomNumberWithinARangeAndPowerOf2(2, 1);
+    public void gameSetup(NumberGenerator numberGenerator1, NumberGenerator numberGenerator2) {
+        int index1 = numberGenerator1.getNumber(15, 0);
+        int index2 = numberGenerator1.getNumber(15, 0);
+        int value1 = numberGenerator2.getNumber(2, 1);
+        int value2 = numberGenerator2.getNumber(2, 1);
         grid.get(index1).setValue(value1);
         grid.get(index2).setValue(value2);
     }
 
-    public void play(String key) {
-        Mover mover = MoverFactory.getMover(key);
+    public void play(int keycode) {
+        Mover mover = MoverFactory.getMover(keycode);
         mover.execute(grid, GRID_SIZE);
-        //createOneCell();
-    }
-
-    private void createOneCell() {
-        int value;
-        do {
-            int index = NumberGenerator.getRandomNumberWithinARange(15, 0);
-            value = grid.get(index).getValue();
-            if (value == 0) {
-                grid.get(index).setValue(NumberGenerator.
-                        getRandomNumberWithinARangeAndPowerOf2(2, 1));
-            }
-        } while (value!=0);
+        NumberGenerator numberGenerator = new NumberGeneratorWithinARange();
+        NumberGenerator numberGenerator1 = new NumberGeneratorWithPowerOf2();
+        GameRules.createOneCell(grid, numberGenerator, numberGenerator1);
     }
 
     public List<Cell> getGrid() {

@@ -1,10 +1,7 @@
 package controller;
 
 
-import Factory.KeyFactory;
-import model.Cell;
-import model.Game2048;
-import model.GameRules;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,14 +25,19 @@ class Application2048 {
         }
 
         Game2048 game2048 = new Game2048();
-        game2048.gameSetup();
+        game2048.gameSetup(new NumberGeneratorWithinARange(), new NumberGeneratorWithPowerOf2());
+        List<Cell> grid = game2048.getGrid();
+        for (int i = 0; i < grid.size(); i++) {
+            if (grid.get(i).getValue() > 0) {
+                buttons.get(i).setText("<html><h1>" + grid.get(i).getValue() + "</h1></html>");
+            }
+        }
 
         frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 int code = e.getKeyCode();
-                String key = KeyFactory.getKey(code);
-                game2048.play(key);
+                game2048.play(code);
                 List<Cell> grid = game2048.getGrid();
                 for (int i = 0; i < grid.size(); i++) {
                     if (grid.get(i).getValue() > 0) {

@@ -20,11 +20,11 @@ public class RightMover implements Mover {
             int value = grid.get( currentColumn ).getValue();
             if (value > 0) {
                 for (int k = j; k > currentColumn; k--) {
-                    if (GameRules.isShouldMerge( grid.get( k ), grid.get( currentColumn ) )) {
+                    if (GameRules.shouldMerge( grid.get( k ), grid.get( currentColumn ) )) {
                         grid.get( k ).merge( grid.get( currentColumn ) );
                         j = k - 1;
                         break;
-                    } else if (GameRules.isShouldShift( grid.get( k ) )) {
+                    } else if (GameRules.shouldShift( grid.get( k ) )) {
                         grid.get( k ).shift( grid.get( currentColumn ) );
                         break;
                     } else {

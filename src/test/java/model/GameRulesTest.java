@@ -13,7 +13,7 @@ class GameRulesTest {
     void shouldMergeAndReturnTrueWhenTheTwoCellValuesAreEqual(){
         Cell cell1 = new Cell( 4 );
         Cell cell2 = new Cell( 4 );
-        boolean shouldMerge = GameRules.isShouldMerge( cell1,cell2 );
+        boolean shouldMerge = GameRules.shouldMerge( cell1,cell2 );
         assertTrue(shouldMerge);
     }
 
@@ -21,15 +21,14 @@ class GameRulesTest {
     void shouldNotMergeAndReturnFalseWhenTheTwoCellValuesAreUnEqual(){
         Cell cell1 = new Cell( 4 );
         Cell cell2 = new Cell( 8 );
-        boolean shouldMerge = GameRules.isShouldMerge( cell1,cell2 );
+        boolean shouldMerge = GameRules.shouldMerge( cell1,cell2 );
         assertFalse(shouldMerge);
     }
 
     @Test
     void shouldShiftAndReturnTrueWhenTheFirstCellValueIsZero(){
         Cell cell1 = new Cell( 0 );
-        Cell cell2 = new Cell( 4 );
-        boolean shouldShift = GameRules.isShouldShift( cell1 );
+        boolean shouldShift = GameRules.shouldShift( cell1 );
         assertTrue(shouldShift);
     }
 
@@ -37,7 +36,7 @@ class GameRulesTest {
     void shouldNotShiftAndReturnFalseWhenTheFirstCellValueIsNotZeroAndSecondCellValueIsZero(){
         Cell cell1 = new Cell( 8 );
         Cell cell2 = new Cell( 0 );
-        boolean shouldShift = GameRules.isShouldShift( cell1 );
+        boolean shouldShift = GameRules.shouldShift( cell1 );
         assertFalse(shouldShift);
     }
 
@@ -64,4 +63,16 @@ class GameRulesTest {
         List<Cell> grid = Arrays.asList(new Cell(8),new Cell(48), new Cell(8), new Cell(16));
         assertFalse(GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid));
     }
+
+    @Test
+    void shouldCreateOneCellIfTheGridIsEmpty(){
+        List<Cell> grid = Arrays.asList(new Cell(4),new Cell(0),new Cell(8),new Cell(8),new Cell(24),
+                new Cell(4),new Cell(4),new Cell(0),new Cell(16),new Cell(16),
+                new Cell(8),new Cell(2),new Cell(2),new Cell(4),new Cell(2),new Cell(4));
+        NumberGenerator numberGenerator = new NumberGeneratorWithinARange();
+        NumberGenerator numberGenerator1 = new NumberGeneratorWithPowerOf2();
+        GameRules.createOneCell(grid, numberGenerator,numberGenerator1);
+        assertTrue(grid.get(7).getValue()!=0 || grid.get(1).getValue()!=0);
+    }
+
 }
