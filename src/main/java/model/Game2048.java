@@ -25,12 +25,10 @@ public class Game2048 {
         grid.get(index2).setValue(value2);
     }
 
-    public void play(int keycode) {
+    public void play(int keycode, NumberGenerator numberGenerator, NumberGenerator numberGenerator1) {
         Mover mover = MoverFactory.getMover(keycode);
         mover.execute(grid, GRID_SIZE);
-        NumberGenerator numberGenerator = new NumberGeneratorWithinARange();
-        NumberGenerator numberGenerator1 = new NumberGeneratorWithPowerOf2();
-        GameRules.createOneCell(grid, numberGenerator, numberGenerator1);
+        new CellGenerator().generate(grid,numberGenerator,numberGenerator1);
     }
 
     public List<Cell> getGrid() {

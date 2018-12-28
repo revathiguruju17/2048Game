@@ -1,6 +1,7 @@
 package model;
 
 import Factory.MoverFactory;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -11,11 +12,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 class Game2048Test {
+    private NumberGenerator numberGenerator;
+    private NumberGenerator numberGenerator1;
 
+    @BeforeEach
+    void init(){
+        numberGenerator = Mockito.mock(NumberGeneratorWithinARange.class);
+        numberGenerator1 = Mockito.mock(NumberGeneratorWithPowerOf2.class);
+    }
+    
     @Test
-    void checkingWhetherTheRandomNumberIsCreatedOrNotWhenTheSetupMethodIsCalled() {
-        NumberGenerator numberGenerator = Mockito.mock(NumberGeneratorWithinARange.class);
-        NumberGenerator numberGenerator1 = Mockito.mock(NumberGeneratorWithPowerOf2.class);
+    void checkingWhetherTheRandomNumbersIsCreatedOrNotWhenTheSetupMethodIsCalled() {
         when(numberGenerator.getNumber(15, 0)).thenReturn(5, 9);
         when(numberGenerator1.getNumber(2, 1)).thenReturn(2, 4);
         Game2048 game2048 = new Game2048();
@@ -29,24 +36,10 @@ class Game2048Test {
     void checkingWhetherTheMoverFactoryMethodIsGettingCalledOrNot() {
         MoverFactory moverFactoryMock = Mockito.mock(MoverFactory.class);
         Game2048 game2048 = new Game2048();
-        game2048.play(37);
+        game2048.gameSetup(numberGenerator,numberGenerator1);
+        game2048.play(37, numberGenerator,numberGenerator1);
         verify(moverFactoryMock);
         getMover(37);
     }
 
-    @Test
-    void shouldInitializeOnlyTwoCellValuesWhenGameSetUpMethodIsCalled() {
-        Game2048 game2048 = new Game2048();
-        NumberGenerator numberGenerator = new NumberGeneratorWithinARange();
-        NumberGenerator numberGenerator1 = new NumberGeneratorWithPowerOf2();
-        game2048.gameSetup(numberGenerator, numberGenerator1);
-        List<Cell> grid = game2048.getGrid();
-        int updatedCells = 0;
-        for (Cell cell : grid) {
-            if (cell.getValue() != 0) {
-                updatedCells += 1;
-            }
-        }
-        assertEquals(2, updatedCells);
-    }
 }

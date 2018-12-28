@@ -1,11 +1,13 @@
 package model;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 class GameRulesTest {
 
@@ -35,7 +37,6 @@ class GameRulesTest {
     @Test
     void shouldNotShiftAndReturnFalseWhenTheFirstCellValueIsNotZeroAndSecondCellValueIsZero(){
         Cell cell1 = new Cell( 8 );
-        Cell cell2 = new Cell( 0 );
         boolean shouldShift = GameRules.shouldShift( cell1 );
         assertFalse(shouldShift);
     }
@@ -62,17 +63,6 @@ class GameRulesTest {
     void shouldReturnFalseIfTheGridIsFull(){
         List<Cell> grid = Arrays.asList(new Cell(8),new Cell(48), new Cell(8), new Cell(16));
         assertFalse(GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid));
-    }
-
-    @Test
-    void shouldCreateOneCellIfTheGridIsEmpty(){
-        List<Cell> grid = Arrays.asList(new Cell(4),new Cell(0),new Cell(8),new Cell(8),new Cell(24),
-                new Cell(4),new Cell(4),new Cell(0),new Cell(16),new Cell(16),
-                new Cell(8),new Cell(2),new Cell(2),new Cell(4),new Cell(2),new Cell(4));
-        NumberGenerator numberGenerator = new NumberGeneratorWithinARange();
-        NumberGenerator numberGenerator1 = new NumberGeneratorWithPowerOf2();
-        GameRules.createOneCell(grid, numberGenerator,numberGenerator1);
-        assertTrue(grid.get(7).getValue()!=0 || grid.get(1).getValue()!=0);
     }
 
 }

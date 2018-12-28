@@ -37,7 +37,7 @@ class Application2048 {
             @Override
             public void keyPressed(KeyEvent e) {
                 int code = e.getKeyCode();
-                game2048.play(code);
+                game2048.play(code, new NumberGeneratorWithinARange(), new NumberGeneratorWithPowerOf2());
                 List<Cell> grid = game2048.getGrid();
                 for (int i = 0; i < grid.size(); i++) {
                     if (grid.get(i).getValue() > 0) {
