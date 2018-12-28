@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,7 +15,7 @@ class Game2048Test {
     private NumberGenerator numberGenerator1;
 
     @BeforeEach
-    void init(){
+    void init() {
         numberGenerator = Mockito.mock(NumberGeneratorWithinARange.class);
         numberGenerator1 = Mockito.mock(NumberGeneratorWithPowerOf2.class);
     }
@@ -30,17 +31,15 @@ class Game2048Test {
         assertEquals(4, grid.get(9).getValue());
     }
 
+
     @Test
-    void checkingWhetherTheMoverFactoryMethodIsGettingCalledOrNot() {
-        when(numberGenerator.getNumber(15, 0)).thenReturn(5, 9,7);
-        when(numberGenerator1.getNumber(2, 1)).thenReturn(2, 4,4);
+    void checkingWhetherTheLeftMoverMethodIsGettingCalledOrNot(){
         Game2048 game2048 = new Game2048();
-        game2048.gameSetup(numberGenerator,numberGenerator1);
-        game2048.play(37, numberGenerator,numberGenerator1);
-        List<Cell> grid = game2048.getGrid();
-        assertEquals(2,grid.get(4).getValue());
-        assertEquals(4,grid.get(7).getValue());
-        assertEquals(4,grid.get(8).getValue());
+        Mover mover = Mockito.mock(LeftMover.class);
+        doNothing().when(mover).execute(isA(List.class),isA(Integer.class));
+        game2048.play(mover,numberGenerator,numberGenerator1);
+        mover.execute(null,0);
+        verify(mover,times(1)).execute(null,0);
     }
 
 }

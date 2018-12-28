@@ -1,6 +1,7 @@
 package controller;
 
 
+import Factory.MoverFactory;
 import model.*;
 
 import javax.swing.*;
@@ -37,7 +38,8 @@ class Application2048 {
             @Override
             public void keyPressed(KeyEvent e) {
                 int code = e.getKeyCode();
-                game2048.play(code, new NumberGeneratorWithinARange(), new NumberGeneratorWithPowerOf2());
+                Mover mover = MoverFactory.getMover(code);
+                game2048.play(mover, new NumberGeneratorWithinARange(), new NumberGeneratorWithPowerOf2());
                 List<Cell> grid = game2048.getGrid();
                 for (int i = 0; i < grid.size(); i++) {
                     if (grid.get(i).getValue() > 0) {

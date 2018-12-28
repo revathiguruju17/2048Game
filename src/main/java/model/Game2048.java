@@ -2,6 +2,7 @@ package model;
 
 import Factory.MoverFactory;
 
+import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,10 +26,13 @@ public class Game2048 {
         grid.get(index2).setValue(value2);
     }
 
-    public void play(int keycode, NumberGenerator numberGenerator, NumberGenerator numberGenerator1) {
-        Mover mover = MoverFactory.getMover(keycode);
+    public Mover getMover(int keycode) {
+        return MoverFactory.getMover(keycode);
+    }
+
+    public void play(Mover mover, NumberGenerator numberGenerator, NumberGenerator numberGenerator1) {
         mover.execute(grid, GRID_SIZE);
-        new CellGenerator().generate(grid,numberGenerator,numberGenerator1);
+        new CellGenerator().generate(grid, numberGenerator, numberGenerator1);
     }
 
     public List<Cell> getGrid() {
