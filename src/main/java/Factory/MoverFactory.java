@@ -13,8 +13,9 @@ public class MoverFactory {
                 return new UpMover();
             case KeyEvent.VK_RIGHT:
                 return new RightMover();
-            default:
+            case KeyEvent.VK_DOWN:
                 return new DownMover();
         }
+        return null;
     }
 }

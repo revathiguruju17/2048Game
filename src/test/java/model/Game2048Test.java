@@ -1,10 +1,10 @@
 package model;
 
+import Factory.MoverFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,13 +33,13 @@ class Game2048Test {
 
 
     @Test
-    void checkingWhetherTheLeftMoverMethodIsGettingCalledOrNot(){
+    void checkingWhetherTheLeftMoverMethodIsGettingCalledOrNot() {
         Game2048 game2048 = new Game2048();
-        Mover mover = Mockito.mock(LeftMover.class);
-        doNothing().when(mover).execute(isA(List.class),isA(Integer.class));
-        game2048.play(mover,numberGenerator,numberGenerator1);
-        mover.execute(null,0);
-        verify(mover,times(1)).execute(null,0);
+        Mover moverMock = Mockito.mock(LeftMover.class);
+        doNothing().when(moverMock).execute(isA(List.class), isA(Integer.class));
+        List<Cell> grid = game2048.getGrid();
+        game2048.play(moverMock, numberGenerator, numberGenerator1);
+        verify(moverMock).execute(grid, 4);
     }
 
 }

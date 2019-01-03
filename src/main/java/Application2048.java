@@ -1,6 +1,3 @@
-package controller;
-
-
 import Factory.MoverFactory;
 import model.*;
 

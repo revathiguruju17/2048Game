@@ -4,6 +4,7 @@ import model.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class MoverFactoryTest {
 
@@ -29,6 +30,11 @@ class MoverFactoryTest {
     void shouldReturnDownMoverWhenWePassDownKeyCode() {
         Mover mover = MoverFactory.getMover(40);
         assertEquals(DownMover.class, mover.getClass());
+    }
+
+    @Test
+    void shouldReturnNullWhenWePassWrongKeyKeyCode() {
+        assertNull(MoverFactory.getMover(41));
     }
 
 }
