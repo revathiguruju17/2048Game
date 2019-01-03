@@ -36,17 +36,17 @@ class Application2048 {
             public void keyPressed(KeyEvent e) {
                 int code = e.getKeyCode();
                 Mover mover = MoverFactory.getMover(code);
-                game2048.play(mover, new NumberGeneratorWithinARange(), new NumberGeneratorWithPowerOf2());
+                GameState gameState = game2048.play(mover, new NumberGeneratorWithinARange(), new NumberGeneratorWithPowerOf2());
                 List<Cell> grid = game2048.getGrid();
                 for (int i = 0; i < grid.size(); i++) {
                     if (grid.get(i).getValue() > 0) {
                         buttons.get(i).setText("<html><h1>" + grid.get(i).getValue() + "</h1></html>");
                     }
                 }
-                if (GameRules.checkWhetherTheGridContains2048(grid)) {
+                if (gameState.equals(GameState.WIN)) {
                     JOptionPane.showMessageDialog(frame, "You have won the game");
                 }
-                if (!GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid)) {
+                if (gameState.equals(GameState.OVER)) {
                     JOptionPane.showMessageDialog(frame, "Game is over");
                 }
             }
