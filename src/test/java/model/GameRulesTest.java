@@ -1,13 +1,11 @@
 package model;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 class GameRulesTest {
 
@@ -56,13 +54,18 @@ class GameRulesTest {
     @Test
     void shouldReturnTrueIfTheGridConsistsOfAnEmptyCell(){
         List<Cell> grid = Arrays.asList(new Cell(8),new Cell(2048), new Cell(8), new Cell(0));
-        assertTrue(GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid));
+        assertTrue(GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid,2));
     }
 
     @Test
     void shouldReturnFalseIfTheGridIsFull(){
-        List<Cell> grid = Arrays.asList(new Cell(8),new Cell(48), new Cell(8), new Cell(16));
-        assertFalse(GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid));
+        List<Cell> grid = Arrays.asList(new Cell(8),new Cell(48), new Cell(4), new Cell(16));
+        assertFalse(GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid,2));
     }
 
+    @Test
+    void shouldReturnTrueIfTheGridIsFullButGridContainsSimilarValues(){
+        List<Cell> grid = Arrays.asList(new Cell(8),new Cell(48), new Cell(8), new Cell(8));
+        assertTrue(GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid,2));
+    }
 }

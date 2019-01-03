@@ -21,14 +21,19 @@ class GameRules {
         return isGridContains2048;
     }
 
-    static Boolean checkWhetherTheGridConsistsOfAnEmptyCell(List<Cell> grid) {
-        for (int index = 0; index < grid.size(); index++) {
-            if (grid.get(index).getValue() == 0) {
+    static Boolean checkWhetherTheGridConsistsOfAnEmptyCell(List<Cell> grid, int size) {
+        for (Cell cell : grid) {
+            if (cell.getValue() == 0) {
                 return true;
-            } else if (grid.get(index).getValue() == grid.get(index + 1).getValue()) {
-                return true;
-            } else if (grid.get(index).getValue() == grid.get(index + grid.size()).getValue()) {
-                return true;
+            }
+        }
+        for (int row = 0; row < size; row++) {
+            for (int column = 0; column < size - 1; column++) {
+                if (grid.get(row + column).getValue() == grid.get(row + column + 1).getValue()) {
+                    return true;
+                } else if (grid.get(row + column).getValue() == grid.get(row + column + size).getValue()) {
+                    return true;
+                }
             }
         }
         return false;

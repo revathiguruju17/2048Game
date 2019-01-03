@@ -37,7 +37,7 @@ public class Game2048 {
     private GameState updateState() {
         if (GameRules.checkWhetherTheGridContains2048(grid)) {
             return GameState.WIN;
-        } else if (!GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid)) {
+        } else if (!GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid,4)) {
             return GameState.OVER;
         } else
             return GameState.CONTINUE;
