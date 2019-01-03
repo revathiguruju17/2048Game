@@ -39,7 +39,8 @@ class Application2048 {
                 GameState gameState = game2048.play(mover, new NumberGeneratorWithinARange(), new NumberGeneratorWithPowerOf2());
                 List<Cell> grid = game2048.getGrid();
                 for (int i = 0; i < grid.size(); i++) {
-                    if (grid.get(i).getValue() > 0) {
+                    buttons.get(i).setText("<html><h1> </h1></html>");
+                    if (grid.get(i).getValue() != 0) {
                         buttons.get(i).setText("<html><h1>" + grid.get(i).getValue() + "</h1></html>");
                     }
                 }

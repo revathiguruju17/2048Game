@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-public class GameRules {
+class GameRules {
     static boolean shouldMerge(Cell cell1, Cell cell2) {
         return cell1.checkCellsForMerging(cell2);
     }
@@ -11,7 +11,7 @@ public class GameRules {
         return cell1.checkCellsForShifting();
     }
 
-    public static Boolean checkWhetherTheGridContains2048(List<Cell> grid) {
+    static Boolean checkWhetherTheGridContains2048(List<Cell> grid) {
         boolean isGridContains2048 = false;
         for (Cell cell : grid) {
             if (cell.getValue() == 2048) {
@@ -21,14 +21,17 @@ public class GameRules {
         return isGridContains2048;
     }
 
-    public static Boolean checkWhetherTheGridConsistsOfAnEmptyCell(List<Cell> grid) {
-        boolean isEmpty = false;
-        for (Cell cell : grid) {
-            if (cell.getValue() == 0) {
-                isEmpty = true;
+    static Boolean checkWhetherTheGridConsistsOfAnEmptyCell(List<Cell> grid) {
+        for (int index = 0; index < grid.size(); index++) {
+            if (grid.get(index).getValue() == 0) {
+                return true;
+            } else if (grid.get(index).getValue() == grid.get(index + 1).getValue()) {
+                return true;
+            } else if (grid.get(index).getValue() == grid.get(index + grid.size()).getValue()) {
+                return true;
             }
         }
-        return isEmpty;
+        return false;
     }
 
 }
