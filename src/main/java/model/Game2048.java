@@ -28,38 +28,21 @@ public class Game2048 {
     public GameState play(Mover mover, NumberGenerator numberGenerator, NumberGenerator numberGenerator1) {
         mover.execute(grid, GRID_SIZE);
         GameState gameState = updateState();
-        if(gameState.equals(GameState.CONTINUE)){
-            new CellGenerator().generate(grid,numberGenerator,numberGenerator1);
+        if (gameState.equals(GameState.CONTINUE)) {
+            new CellGenerator().generate(grid, numberGenerator, numberGenerator1);
         }
         return gameState;
     }
 
     private GameState updateState() {
-        if (gridContains2048()) {
+        if (GameRules.checkWhetherTheGridContains2048(grid)) {
             return GameState.WIN;
-        } else if (isGridFull()) {
-           return GameState.OVER;
+        } else if (!GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid)) {
+            return GameState.OVER;
         } else
             return GameState.CONTINUE;
     }
 
-    private boolean gridContains2048() {
-        for (Cell cell : grid) {
-            if (cell.getValue() == 2048) {
-                return false;
-            }
-        }
-        return false;
-    }
-
-    private boolean isGridFull() {
-        for (Cell cell : grid) {
-            if (cell.getValue() == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     public List<Cell> getGrid() {
         return grid;

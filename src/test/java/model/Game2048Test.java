@@ -1,6 +1,5 @@
 package model;
 
-import Factory.MoverFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -42,4 +41,17 @@ class Game2048Test {
         verify(moverMock).execute(grid, 4);
     }
 
+    @Test
+    void checkingWhetherTheLeftMoverAndRightMoverMethodsAreGettingCalledOrNot() {
+        when(numberGenerator.getNumber(15, 0)).thenReturn(5, 9,6,14);
+        when(numberGenerator1.getNumber(2, 1)).thenReturn(2, 4,2,4);
+        Game2048 game2048 = new Game2048();
+        game2048.gameSetup(numberGenerator,numberGenerator1);
+        game2048.play(new LeftMover(),numberGenerator,numberGenerator1);
+        game2048.play(new RightMover(),numberGenerator,numberGenerator1);
+        game2048.play(new UpMover(),numberGenerator,numberGenerator1);
+        List<Cell>  grid = game2048.getGrid();
+        assertEquals(8,grid.get(3).getValue());
+        assertEquals(4,grid.get(2).getValue());
+    }
 }
