@@ -54,19 +54,19 @@ class GameRulesTest {
     @Test
     void shouldReturnTrueIfTheGridConsistsOfAnEmptyCell() {
         List<Cell> grid = Arrays.asList(new Cell(8), new Cell(2048), new Cell(8), new Cell(0));
-        assertTrue(GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid, 2));
+        assertTrue(GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid));
     }
 
     @Test
     void shouldReturnFalseIfTheGridIsFull() {
         List<Cell> grid = Arrays.asList(new Cell(8), new Cell(64), new Cell(16), new Cell(4), new Cell(2),
                 new Cell(4), new Cell(8), new Cell(16), new Cell(32));
-        assertFalse(GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid, 3));
+        assertFalse(GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid));
     }
 
     @Test
     void shouldReturnTrueIfTheGridIsFullButGridContainsSimilarValues() {
         List<Cell> grid = Arrays.asList(new Cell(4), new Cell(8), new Cell(16), new Cell(8));
-        assertTrue(GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid, 2));
+        assertFalse(GameRules.checkWhetherTheGridConsistsOfAnEmptyCell(grid));
     }
 }
