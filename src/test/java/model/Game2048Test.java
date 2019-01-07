@@ -32,11 +32,38 @@ class Game2048Test {
 
     @Test
     void checkingWhetherTheLeftMoverMethodIsGettingCalledOrNot() {
-        Mover moverMock = Mockito.mock(LeftMover.class);
-        doNothing().when(moverMock).execute(isA(List.class), isA(Integer.class));
+        Mover leftMoverMock = Mockito.mock(LeftMover.class);
+        doNothing().when(leftMoverMock).execute(isA(List.class), isA(Integer.class));
         List<Cell> grid = game2048.getGrid();
-        game2048.play(moverMock, numberGeneratorMock);
-        verify(moverMock).execute(grid, 4);
+        game2048.play(leftMoverMock, numberGeneratorMock);
+        verify(leftMoverMock,times(1)).execute(grid, 4);
+    }
+
+    @Test
+    void checkingWhetherTheRightMoverMethodIsGettingCalledOrNot(){
+        Mover rightMoverMock = Mockito.mock(RightMover.class);
+        doNothing().when(rightMoverMock).execute(isA(List.class), isA(Integer.class));
+        List<Cell> grid = game2048.getGrid();
+        game2048.play(rightMoverMock, numberGeneratorMock);
+        verify(rightMoverMock,times(1)).execute(grid, 4);
+    }
+
+    @Test
+    void checkingWhetherTheDownMoverMethodIsGettingCalledOrNot(){
+        Mover downMover = Mockito.mock(UpMover.class);
+        doNothing().when(downMover).execute(isA(List.class), isA(Integer.class));
+        List<Cell> grid = game2048.getGrid();
+        game2048.play(downMover, numberGeneratorMock);
+        verify(downMover,times(1)).execute(grid, 4);
+    }
+
+    @Test
+    void checkingWhetherTheUpMoverMethodIsGettingCalledOrNot(){
+        Mover upMoverMock = Mockito.mock(UpMover.class);
+        doNothing().when(upMoverMock).execute(isA(List.class), isA(Integer.class));
+        List<Cell> grid = game2048.getGrid();
+        game2048.play(upMoverMock, numberGeneratorMock);
+        verify(upMoverMock,times(1)).execute(grid, 4);
     }
 
     @Test
@@ -51,6 +78,7 @@ class Game2048Test {
         assertEquals(8, grid.get(3).getValue());
         assertEquals(4, grid.get(2).getValue());
     }
+
 
     @Test
     void shouldReturnGameStateAsWinIfTheGridContains2048() {
