@@ -12,18 +12,17 @@ class GameRules {
     }
 
     static Boolean checkWhetherTheGridContains2048(List<Cell> grid) {
-        boolean isGridContains2048 = false;
         for (Cell cell : grid) {
             if (cell.getValue() == 2048) {
-                isGridContains2048 = true;
+                return true;
             }
         }
-        return isGridContains2048;
+        return false;
     }
 
     static Boolean checkWhetherTheGridConsistsOfAnEmptyCell(List<Cell> grid) {
-        for (Cell cell:grid) {
-            if(cell.getValue()==0){
+        for (Cell cell : grid) {
+            if (cell.getValue() == 0) {
                 return true;
             }
         }
