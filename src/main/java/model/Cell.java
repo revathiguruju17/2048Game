@@ -12,7 +12,7 @@ public class Cell {
         return value;
     }
 
-    void setValue(int value) {
+    public void setValue(int value) {
         this.value = value;
     }
 
@@ -27,7 +27,7 @@ public class Cell {
         return value == cell.value;
     }
 
-    void merge(Cell cell) {
+    public void merge(Cell cell) {
         this.addTwoCellValues( cell );
         cell.setValue( 0 );
     }
@@ -40,7 +40,7 @@ public class Cell {
         return this.getValue()==0 ;
     }
 
-    void shift(Cell cell2) {
+    public void shift(Cell cell2) {
         this.setValue( cell2.getValue() );
         cell2.setValue( 0 );
     }

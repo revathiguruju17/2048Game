@@ -1,5 +1,7 @@
-package model;
+package Controller;
 
+
+import model.Cell;
 
 import java.util.List;
 

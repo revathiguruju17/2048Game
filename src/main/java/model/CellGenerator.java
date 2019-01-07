@@ -2,8 +2,8 @@ package model;
 
 import java.util.List;
 
-class CellGenerator {
-   List<Cell> generate(List<Cell> grid, NumberGenerator numberGenerator) {
+public class CellGenerator {
+   public List<Cell> generate(List<Cell> grid, NumberGenerator numberGenerator) {
         int value;
         do {
             int index = numberGenerator.getNumberWithinARange(15, 0);

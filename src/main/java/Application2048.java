@@ -1,3 +1,5 @@
+import Controller.Game2048;
+import Controller.Mover;
 import Factory.MoverFactory;
 import model.*;
 
@@ -14,15 +16,17 @@ class Application2048 {
         JFrame frame = new JFrame("2048");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(new GridLayout(4, 4, 20, 20));
+        frame.setBackground(Color.GREEN);
         for (int i = 0; i < 16; i++) {
             JButton button = new JButton("");
             button.setSize(100, 100);
             button.setEnabled(false);
+            button.setBackground(Color.PINK);
             buttons.add(button);
             frame.add(button);
         }
 
-        Game2048 game2048 = new Game2048(4,2,2);
+        Game2048 game2048 = new Game2048(4, 2, 2);
         game2048.gameSetup(new NumberGenerator());
         List<Cell> grid = game2048.getGrid();
         for (int i = 0; i < grid.size(); i++) {

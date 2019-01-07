@@ -1,5 +1,8 @@
-package model;
+package Controller;
 
+import Controller.Mover;
+import Controller.UpMover;
+import model.Cell;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
