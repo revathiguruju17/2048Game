@@ -15,20 +15,20 @@ public class Game2048 {
         GameState gameState = GameState.CONTINUE;
     }
 
-    public void gameSetup(NumberGenerator numberGenerator1, NumberGenerator numberGenerator2) {
-        int index1 = numberGenerator1.getNumber(15, 0);
-        int index2 = numberGenerator1.getNumber(15, 0);
-        int value1 = numberGenerator2.getNumber(2, 1);
-        int value2 = numberGenerator2.getNumber(2, 1);
+    public void gameSetup(NumberGenerator numberGenerator) {
+        int index1 = numberGenerator.getNumberWithinARange(15, 0);
+        int index2 = numberGenerator.getNumberWithinARange(15, 0);
+        int value1 = numberGenerator.getNumberWithAPowerOf2(2, 1);
+        int value2 = numberGenerator.getNumberWithAPowerOf2(2, 1);
         grid.get(index1).setValue(value1);
         grid.get(index2).setValue(value2);
     }
 
-    public GameState play(Mover mover, NumberGenerator numberGenerator, NumberGenerator numberGenerator1) {
+    public GameState play(Mover mover, NumberGenerator numberGenerator) {
         mover.execute(grid, GRID_SIZE);
         GameState gameState = updateGameState();
         if (gameState.equals(GameState.CONTINUE)) {
-            new CellGenerator().generate(grid, numberGenerator, numberGenerator1);
+            new CellGenerator().generate(grid, numberGenerator);
         }
         return gameState;
     }

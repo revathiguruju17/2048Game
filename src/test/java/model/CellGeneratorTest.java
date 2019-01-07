@@ -16,11 +16,10 @@ class CellGeneratorTest {
         List<Cell> grid = Arrays.asList(new Cell(4), new Cell(0), new Cell(8), new Cell(8), new Cell(24),
                 new Cell(4), new Cell(4), new Cell(0), new Cell(0), new Cell(0),
                 new Cell(8), new Cell(2), new Cell(2), new Cell(4), new Cell(2), new Cell(4));
-        NumberGenerator numberGenerator = Mockito.mock(NumberGeneratorWithinARange.class);
-        NumberGenerator numberGenerator1 = Mockito.mock(NumberGeneratorWithPowerOf2.class);
-        when(numberGenerator.getNumber(15, 0)).thenReturn(7);
-        when(numberGenerator1.getNumber(2, 1)).thenReturn(4);
-        new CellGenerator().generate(grid, numberGenerator, numberGenerator1);
+        NumberGenerator numberGenerator = Mockito.mock(NumberGenerator.class);
+        when(numberGenerator.getNumberWithinARange(15, 0)).thenReturn(7);
+        when(numberGenerator.getNumberWithAPowerOf2(2, 1)).thenReturn(4);
+        new CellGenerator().generate(grid, numberGenerator);
         assertEquals(4, grid.get(7).getValue());
     }
 }

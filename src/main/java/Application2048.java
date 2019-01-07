@@ -23,7 +23,7 @@ class Application2048 {
         }
 
         Game2048 game2048 = new Game2048();
-        game2048.gameSetup(new NumberGeneratorWithinARange(), new NumberGeneratorWithPowerOf2());
+        game2048.gameSetup(new NumberGenerator());
         List<Cell> grid = game2048.getGrid();
         for (int i = 0; i < grid.size(); i++) {
             if (grid.get(i).getValue() > 0) {
@@ -36,7 +36,7 @@ class Application2048 {
             public void keyPressed(KeyEvent e) {
                 int code = e.getKeyCode();
                 Mover mover = MoverFactory.getMover(code);
-                GameState gameState = game2048.play(mover, new NumberGeneratorWithinARange(), new NumberGeneratorWithPowerOf2());
+                GameState gameState = game2048.play(mover, new NumberGenerator());
                 List<Cell> grid = game2048.getGrid();
                 for (int i = 0; i < grid.size(); i++) {
                     buttons.get(i).setText("<html><h1> </h1></html>");
