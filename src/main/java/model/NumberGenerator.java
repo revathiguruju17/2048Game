@@ -6,7 +6,7 @@ public class NumberGenerator {
         return min + (int) (Math.random() * (max));
     }
 
-    int getNumberWithAPowerOf2(int max, int min) {
-        return (int) Math.pow(2, min + (int) (Math.random() * (max)));
+    int getNumberWithinASpecifiedRangeAndCalculatePower(int max, int min, int base) {
+        return (int) Math.pow(base, min + (int) (Math.random() * (max)));
     }
 }

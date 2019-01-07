@@ -22,7 +22,7 @@ class Application2048 {
             frame.add(button);
         }
 
-        Game2048 game2048 = new Game2048();
+        Game2048 game2048 = new Game2048(4,2,2);
         game2048.gameSetup(new NumberGenerator());
         List<Cell> grid = game2048.getGrid();
         for (int i = 0; i < grid.size(); i++) {

@@ -18,7 +18,7 @@ class CellGeneratorTest {
                 new Cell(8), new Cell(2), new Cell(2), new Cell(4), new Cell(2), new Cell(4));
         NumberGenerator numberGenerator = Mockito.mock(NumberGenerator.class);
         when(numberGenerator.getNumberWithinARange(15, 0)).thenReturn(7);
-        when(numberGenerator.getNumberWithAPowerOf2(2, 1)).thenReturn(4);
+        when(numberGenerator.getNumberWithinASpecifiedRangeAndCalculatePower(2, 1,2)).thenReturn(4);
         new CellGenerator().generate(grid, numberGenerator);
         assertEquals(4, grid.get(7).getValue());
     }

@@ -16,13 +16,13 @@ class Game2048Test {
     @BeforeEach
     void init() {
         numberGeneratorMock = Mockito.mock(NumberGenerator.class);
-        game2048 = new Game2048();
+        game2048 = new Game2048(4,2,2);
     }
 
     @Test
     void checkingWhetherTheRandomNumbersIsCreatedOrNotWhenTheSetupMethodIsCalled() {
         when(numberGeneratorMock.getNumberWithinARange(15, 0)).thenReturn(5, 9);
-        when(numberGeneratorMock.getNumberWithAPowerOf2(2, 1)).thenReturn(2, 4);
+        when(numberGeneratorMock.getNumberWithinASpecifiedRangeAndCalculatePower(2, 1,2)).thenReturn(2, 4);
         game2048.gameSetup(numberGeneratorMock);
         List<Cell> grid = game2048.getGrid();
         assertEquals(2, grid.get(5).getValue());
@@ -42,7 +42,7 @@ class Game2048Test {
     @Test
     void checkingWhetherAllTheMoverMethodsAreGettingCalledOrNotForTheGivenSetOfValues() {
         when(numberGeneratorMock.getNumberWithinARange(15, 0)).thenReturn(5, 9, 6, 14);
-        when(numberGeneratorMock.getNumberWithAPowerOf2(2, 1)).thenReturn(2, 4, 2, 4);
+        when(numberGeneratorMock.getNumberWithinASpecifiedRangeAndCalculatePower(2, 1,2)).thenReturn(2, 4, 2, 4);
         game2048.gameSetup(numberGeneratorMock);
         game2048.play(new LeftMover(), numberGeneratorMock);
         game2048.play(new RightMover(), numberGeneratorMock);
@@ -55,7 +55,7 @@ class Game2048Test {
     @Test
     void shouldReturnGameStateAsWinIfTheGridContains2048() {
         when(numberGeneratorMock.getNumberWithinARange(15, 0)).thenReturn(5, 9, 6);
-        when(numberGeneratorMock.getNumberWithAPowerOf2(2, 1)).thenReturn(2, 2048, 4);
+        when(numberGeneratorMock.getNumberWithinASpecifiedRangeAndCalculatePower(2, 1,2)).thenReturn(2, 2048, 4);
         game2048.gameSetup(numberGeneratorMock);
         GameState result = game2048.play(new LeftMover(), numberGeneratorMock);
         assertEquals(GameState.WIN, result);
@@ -64,7 +64,7 @@ class Game2048Test {
     @Test
     void shouldReturnGameStateAsContinueIfTheGridContainsAnEmptyCellAndDoesNotHave2048() {
         when(numberGeneratorMock.getNumberWithinARange(15, 0)).thenReturn(5, 9, 6);
-        when(numberGeneratorMock.getNumberWithAPowerOf2(2, 1)).thenReturn(2, 2, 4);
+        when(numberGeneratorMock.getNumberWithinASpecifiedRangeAndCalculatePower(2, 1,2)).thenReturn(2, 2, 4);
         game2048.gameSetup(numberGeneratorMock);
         GameState result = game2048.play(new LeftMover(), numberGeneratorMock);
         assertEquals(GameState.CONTINUE, result);

@@ -28,13 +28,13 @@ class NumberGeneratorTest {
 
     @Test
     void shouldReturnTrueIfTheNumberIsWithinTheRangeAndIsPowerOf2() {
-        int number = numberGenerator.getNumberWithAPowerOf2(2, 1);
+        int number = numberGenerator.getNumberWithinASpecifiedRangeAndCalculatePower(2, 1,2);
         assertTrue(number>=2 && number<=4);
     }
 
     @Test
     void shouldReturnFalseIfTheNumberIsNotWithinTheRangeAndIsPowerOf2() {
-        int number = numberGenerator.getNumberWithAPowerOf2(10, 1);
+        int number = numberGenerator.getNumberWithinASpecifiedRangeAndCalculatePower(10, 1,2);
         assertFalse(number<2 || number>1024);
     }
 }
