@@ -1,8 +1,5 @@
-package Controller;
+package model;
 
-import Controller.LeftMover;
-import Controller.Mover;
-import model.Cell;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

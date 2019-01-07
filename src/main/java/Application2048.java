@@ -1,5 +1,5 @@
-import Controller.Game2048;
-import Controller.Mover;
+import model.Game2048;
+import model.Mover;
 import Factory.MoverFactory;
 import model.*;
 

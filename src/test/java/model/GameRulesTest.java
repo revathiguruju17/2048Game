@@ -1,7 +1,5 @@
-package Controller;
+package model;
 
-import Controller.GameRules;
-import model.Cell;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

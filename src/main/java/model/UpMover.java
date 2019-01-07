@@ -1,8 +1,8 @@
-package Controller;
+package model;
 
-import Controller.GameRules;
-import Controller.Mover;
+import model.GameRules;
 import model.Cell;
+import model.Mover;
 
 import java.util.List;
 

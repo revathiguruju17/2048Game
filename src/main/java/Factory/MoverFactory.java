@@ -1,6 +1,6 @@
 package Factory;
 
-import Controller.*;
+import model.*;
 
 import java.awt.event.KeyEvent;
 

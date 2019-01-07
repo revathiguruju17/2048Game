@@ -32,11 +32,11 @@ public class Cell {
         cell.setValue( 0 );
     }
 
-    boolean checkCellsForMerging(Cell cell) {
+    public boolean checkCellsForMerging(Cell cell) {
         return this.equals( cell);
     }
 
-    boolean checkCellsForShifting() {
+    public boolean checkCellsForShifting() {
         return this.getValue()==0 ;
     }
 

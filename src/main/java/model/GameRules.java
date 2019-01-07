@@ -1,10 +1,10 @@
-package Controller;
+package model;
 
 import model.Cell;
 
 import java.util.List;
 
-public class GameRules {
+class GameRules {
     static boolean shouldMerge(Cell cell1, Cell cell2) {
         return cell1.checkCellsForMerging(cell2);
     }
